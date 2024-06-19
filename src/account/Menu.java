@@ -13,7 +13,7 @@ public class Menu {
 
 	public static void main(String[] args) {
 
-		AccountController contas = new AccountController();
+		AccountController accounts = new AccountController();
 
 		Scanner leia = new Scanner(System.in);
 
@@ -21,19 +21,17 @@ public class Menu {
 		String owner;
 		float balance, limit, value;
 
-		CheckingAccount cc1 = new CheckingAccount(contas.generateNumber(), 123, 1, "João Silva", 1000f, 100.0f);
-		contas.signup(cc1);
+		CheckingAccount cc1 = new CheckingAccount(accounts.generateNumber(), 123, 1, "João Silva", 1000f, 100.0f);
+		accounts.signup(cc1);
 
-		CheckingAccount cc2 = new CheckingAccount(contas.generateNumber(), 124, 1, "Maria da Silva", 2000f, 100.0f);
-		contas.signup(cc2);
+		CheckingAccount cc2 = new CheckingAccount(accounts.generateNumber(), 124, 1, "Maria da Silva", 2000f, 100.0f);
+		accounts.signup(cc2);
 
-		SavingsAccount cp1 = new SavingsAccount(contas.generateNumber(), 125, 2, "Mariana dos Santos", 4000f, 12);
-		contas.signup(cp1);
+		SavingsAccount cp1 = new SavingsAccount(accounts.generateNumber(), 125, 2, "Mariana dos Santos", 4000f, 12);
+		accounts.signup(cp1);
 
-		SavingsAccount cp2 = new SavingsAccount(contas.generateNumber(), 125, 2, "Juliana Ramos", 8000f, 15);
-		contas.signup(cp2);
-
-		
+		SavingsAccount cp2 = new SavingsAccount(accounts.generateNumber(), 125, 2, "Juliana Ramos", 8000f, 15);
+		accounts.signup(cp2);
 
 		// contas.listarTodas();
 
@@ -90,12 +88,12 @@ public class Menu {
 				case 1 -> {
 					System.out.print("Enter the Credit Limit (R$): ");
 					limit = leia.nextFloat();
-					contas.signup(new CheckingAccount(contas.generateNumber(), agency, type, owner, balance, limit));
+					accounts.signup(new CheckingAccount(accounts.generateNumber(), agency, type, owner, balance, limit));
 				}
 				case 2 -> {
 					System.out.print("Enter the Account's Birthday: ");
 					birthday = leia.nextInt();
-					contas.signup(new SavingsAccount(contas.generateNumber(), agency, type, owner, balance, birthday));
+					accounts.signup(new SavingsAccount(accounts.generateNumber(), agency, type, owner, balance, birthday));
 				}
 				}
 
@@ -103,7 +101,7 @@ public class Menu {
 				break;
 			case 2:
 				System.out.println("Show all Accounts\n");
-				contas.showAll();
+				accounts.showAll();
 				keyPress();
 				break;
 			case 3:
@@ -114,7 +112,7 @@ public class Menu {
 
 				System.out.println();
 
-				contas.searchByNumber(number);
+				accounts.searchByNumber(number);
 
 				keyPress();
 				break;
@@ -124,7 +122,7 @@ public class Menu {
 				System.out.print("Enter Account Number: ");
 				number = leia.nextInt();
 
-				var searchAccount = contas.searchInCollection(number);
+				var searchAccount = accounts.searchInCollection(number);
 
 				if (searchAccount != null) {
 
@@ -144,13 +142,13 @@ public class Menu {
 						System.out.print("Enter the Credit Limit (R$): ");
 						limit = leia.nextFloat();
 
-						contas.update(new CheckingAccount(number, agency, type, owner, balance, limit));
+						accounts.update(new CheckingAccount(number, agency, type, owner, balance, limit));
 					}
 					case 2 -> {
 						System.out.print("Enter the Account's Birthday: ");
 						birthday = leia.nextInt();
 
-						contas.update(new SavingsAccount(number, agency, type, owner, balance, birthday));
+						accounts.update(new SavingsAccount(number, agency, type, owner, balance, birthday));
 
 					}
 					default -> {
@@ -170,7 +168,7 @@ public class Menu {
 				System.out.print("Enter the Account number: ");
 				number = leia.nextInt();
 
-				contas.delete(number);
+				accounts.delete(number);
 
 				keyPress();
 				break;
@@ -185,7 +183,7 @@ public class Menu {
 					value = leia.nextFloat();
 				} while (value <= 0);
 
-				contas.withdraw(number, value);
+				accounts.withdraw(number, value);
 
 				keyPress();
 				break;
@@ -200,7 +198,7 @@ public class Menu {
 					value = leia.nextFloat();
 				} while (value <= 0);
 
-				contas.deposit(number, value);
+				accounts.deposit(number, value);
 
 				keyPress();
 				break;
@@ -217,7 +215,7 @@ public class Menu {
 					value = leia.nextFloat();
 				} while (value <= 0);
 
-				contas.transfer(number, destinyNumber, value);
+				accounts.transfer(number, destinyNumber, value);
 
 				keyPress();
 				break;
