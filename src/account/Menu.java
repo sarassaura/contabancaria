@@ -8,6 +8,7 @@ import account.controller.AccountController;
 import account.model.CheckingAccount;
 import account.model.SavingsAccount;
 import account.util.Colors;
+import account.util.Format;
 import mockup.MockupData;
 
 public class Menu {
@@ -25,41 +26,43 @@ public class Menu {
 		float balance, limit, value;
 
 		do {
-			System.out.println(Colors.TEXT_BLACK_BOLD + Colors.ANSI_CYAN_BACKGROUND
-					+ "*******************************************************");
-			System.out.println("*                                                     *");
-			System.out.println("*                      PETBANK                        *");
-			System.out.println("*                                                     *");
-			System.out.println("*******************************************************");
-			System.out.println("*                                                     *");
-			System.out.println("*              1 - Create Account                     *");
-			System.out.println("*              2 - Show all Accounts                  *");
-			System.out.println("*              3 - Search Account by ID               *");
-			System.out.println("*              4 - Update Account                     *");
-			System.out.println("*              5 - Delete Account                     *");
-			System.out.println("*              6 - Withdraw Money                     *");
-			System.out.println("*              7 - Deposit Money                      *");
-			System.out.println("*              8 - Transfer Money                     *");
-			System.out.println("*              9 - Exit                               *");
-			System.out.println("*                                                     *");
-			System.out.println("*******************************************************");
-			System.out.println("             Choose an Operation by Number:            ");
-			System.out.println("                                                       ");
+			Format.stars(Colors.TEXT_BLACK_BOLD + Colors.ANSI_CYAN_BACKGROUND);
+			Format.text("", 0, 1, true);
+			Format.text("PETBANK", 0, 1, true);
+			Format.text("", 0, 1, true);
+			Format.stars("");
+			Format.text("", 0, 1, true);
+			Format.text("1 - Create Account      ", 0, 1, true);
+			Format.text("2 - Show all Accounts   ", 0, 1, true);
+			Format.text("3 - Search Account by ID", 0, 1, true);
+			Format.text("4 - Update Account      ", 0, 1, true);
+			Format.text("5 - Delete Account      ", 0, 1, true);
+			Format.text("6 - Withdraw Money      ", 0, 1, true);
+			Format.text("7 - Deposit Money       ", 0, 1, true);
+			Format.text("8 - Transfer Money      ", 0, 1, true);
+			Format.text("9 - Exit                ", 0, 1, true);
+			Format.text("", 0, 1, true);
+			Format.stars("");
+			Format.text("Choose an Operation by Number:", 0, 1, true);
+			Format.text("", 0, 1, true);
 
 			try {
+				System.out.print(Colors.TEXT_RESET);
 				option = leia.nextInt();
+				System.out.print(Colors.ANSI_CYAN_BACKGROUND + Colors.TEXT_BLACK_BOLD);
 			} catch (InputMismatchException e) {
-				System.out.println(Colors.TEXT_YELLOW + Colors.ANSI_BLACK_BACKGROUND
-						+ "\n                 Enter Integer Values!                 ");
+				System.out.print(Colors.TEXT_YELLOW + Colors.ANSI_BLACK_BACKGROUND);
+				Format.text("Enter Integer Values!", 1, 1, true);
 				leia.nextLine();
 				option = 0;
 			}
 
 			switch (option) {
 			case 1:
-				System.out.print("                   Create Account                      \n");
+				Format.title("Create Account");
 
-				System.out.print(Colors.TEXT_RESET + "Enter the Agency Number: ");
+				System.out.print(Colors.TEXT_RESET);
+				System.out.print("Enter the Agency Number: ");
 				agency = leia.nextInt();
 				System.out.print("Enter the Owner's Number: ");
 				leia.skip("\\R?");
@@ -91,13 +94,14 @@ public class Menu {
 				keyPress();
 				break;
 			case 2:
-				System.out.println("Show all Accounts\n");
+				Format.title("Show all Accounts");
 				accounts.showAll();
 				keyPress();
 				break;
 			case 3:
-				System.out.println("Search Account Data - by ID\n\n");
+				Format.title("Search Account Data - by ID");
 
+				System.out.print(Colors.TEXT_RESET);
 				System.out.println("Enter the Account's ID: ");
 				leia.nextLine();
 				id = leia.nextLine();
@@ -109,8 +113,9 @@ public class Menu {
 				keyPress();
 				break;
 			case 4:
-				System.out.println("Update Account data                                    \n\n");
+				Format.title("Update Account data");
 
+				System.out.print(Colors.TEXT_RESET);
 				System.out.println("Enter Account's ID: ");
 				leia.nextLine();
 				id = leia.nextLine();
@@ -156,8 +161,9 @@ public class Menu {
 				keyPress();
 				break;
 			case 5:
-				System.out.println("Delete Account                                         \n\n");
+				Format.title("Delete Account");
 
+				System.out.print(Colors.TEXT_RESET);
 				System.out.println("Enter the Account's ID: ");
 				leia.nextLine();
 				id = leia.nextLine();
@@ -167,8 +173,9 @@ public class Menu {
 				keyPress();
 				break;
 			case 6:
-				System.out.println("Withdraw                                               \n\n");
+				Format.title("Withdraw");
 
+				System.out.print(Colors.TEXT_RESET);
 				System.out.println("Enter the Account's ID: ");
 				leia.nextLine();
 				id = leia.nextLine();
@@ -183,8 +190,9 @@ public class Menu {
 				keyPress();
 				break;
 			case 7:
-				System.out.println("Deposit                                                \n\n");
+				Format.title("Deposit");
 
+				System.out.print(Colors.TEXT_RESET);
 				System.out.println("Enter the Account's ID:");
 				leia.nextLine();
 				id = leia.nextLine();
@@ -199,12 +207,13 @@ public class Menu {
 				keyPress();
 				break;
 			case 8:
-				System.out.println("Transfer Money Between Accounts                        \n\n");
+				Format.title("Transfer Money Between Accounts");
 
-				System.out.println("Enter the number of the source account:");
+				System.out.print(Colors.TEXT_RESET);
+				Format.text("Enter the number of the source account:",0,1,false);
 				leia.nextLine();
 				id = leia.nextLine();
-				System.out.println("Enter the number of the destination account:");
+				Format.text("Enter the number of the destination account:",0,1,false);
 				destinyID = leia.nextLine();
 
 				do {
@@ -217,14 +226,16 @@ public class Menu {
 				keyPress();
 				break;
 			case 9:
-				System.out.println(Colors.TEXT_BLACK + "\n    PETBANK Where every pet's savings earns a treat!   ");
+				System.out.print(Colors.TEXT_BLACK);
+				Format.text("PETBANK Where every pet's savings earns a treat!", 1, 1, true);
 				credits();
 				leia.close();
 				break;
 			default:
-				System.out.println(Colors.TEXT_RED_BOLD + "\n*******************************************************");
-				System.out.println("*                   Invalid Option!                   *");
-				System.out.println("*******************************************************" + Colors.TEXT_RESET);
+				Format.stars("\n" + Colors.TEXT_RED_BOLD);
+				Format.text("Invalid Option!", 0, 1, true);
+				Format.stars("");
+				System.out.print(Colors.TEXT_RESET + "\n");
 				break;
 			}
 
@@ -232,14 +243,13 @@ public class Menu {
 	}
 
 	public static void credits() {
-		System.out.println("*******************************************************");
-		System.out.println("*  Project Develop By:                                *");
-		System.out.println("*  Generation Brasil - generation@generation.org      *");
-		System.out.println("*  github.com/conteudoGeneration                      *");
-		System.out.println("*  Coded by " + Colors.ANSI_PURPLE_BACKGROUND + Colors.TEXT_WHITE + "Sarah Yukino Nakada"
-				+ Colors.ANSI_CYAN_BACKGROUND + Colors.TEXT_BLACK + "                       *");
-		System.out.println("*  github.com/sarassaura                              *");
-		System.out.println("*******************************************************");
+		Format.stars("");
+		Format.text("Project Develop By:                          ", 0, 1, true);
+		Format.text("Generation Brasil - generation@generation.org", 0, 1, true);
+		Format.text("github.com/conteudoGeneration                ", 0, 1, true);
+		Format.text("Coded by Sarah Yukino Nakada                 ", 0, 1, true);
+		Format.text("github.com/sarassaura                        ", 0, 1, true);
+		Format.stars("");
 	}
 
 	public static void keyPress() {

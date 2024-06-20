@@ -1,5 +1,7 @@
 package account.model;
 
+import account.util.Format;
+
 public class CheckingAccount extends Account {
 
 	private float limit;
@@ -21,7 +23,7 @@ public class CheckingAccount extends Account {
 	public boolean withdraw(float value) {
 
 		if (this.getBalance() + this.getLimit() < value) {
-			System.out.println("\nInsufficient Funds!");
+			Format.text("Insufficient Funds!", 1, 1, true);
 			return false;
 		}
 
@@ -33,7 +35,7 @@ public class CheckingAccount extends Account {
 	@Override
 	public void showAccount() {
 		super.showAccount();
-		System.out.println("Credit's Limit: " + this.limit + "\n");
+		Format.text("Credit's Limit: " + this.limit, 0, 2, false);
 	}
 
 }

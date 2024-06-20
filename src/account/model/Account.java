@@ -1,6 +1,7 @@
 package account.model;
 
 import account.util.Colors;
+import account.util.Format;
 
 public abstract class Account {
 
@@ -61,7 +62,7 @@ public abstract class Account {
 	public boolean withdraw(float value) {
 
 		if (this.getBalance() < value) {
-			System.out.println("\nInsufficient Funds\n!");
+			Format.text("Insufficient Funds!", 1, 1, true);
 			return false;
 		}
 
@@ -88,17 +89,18 @@ public abstract class Account {
 			break;
 		}
 
-		System.out.println(Colors.TEXT_RED + Colors.ANSI_BLACK_BACKGROUND
-				+ "*******************************************************");
-		System.out.println("*" + Colors.TEXT_WHITE + "                   Account's Data:                   "
-				+ Colors.TEXT_RED + "*" + Colors.TEXT_WHITE);
-		System.out.println(
-				Colors.TEXT_RED + "*******************************************************" + Colors.TEXT_WHITE);
-		System.out.println("Account's ID: " + this.id);
-		System.out.println("Agency: " + this.agency);
-		System.out.println("Account's Type: " + type);
-		System.out.println("Owner: " + this.owner);
-		System.out.println("Balance: " + this.balance);
+		System.out.print(Colors.TEXT_RED + Colors.ANSI_BLACK_BACKGROUND);
+		Format.stars("");
+		System.out.print(Colors.TEXT_WHITE);
+		Format.text("Account's Data:",0,1,true);
+		System.out.print(Colors.TEXT_RED);
+		Format.stars("");
+		System.out.print(Colors.TEXT_WHITE);
+		Format.text("Account's ID: " + this.id, 0, 1, false);
+		Format.text("Agency: " + this.agency, 0, 1, false);
+		Format.text("Account's Type: " + type, 0, 1, false);
+		Format.text("Owner: " + this.owner, 0, 1, false);
+		Format.text("Balance: " + this.balance, 0, 1, false);
 	}
 
 }

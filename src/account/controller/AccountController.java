@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import account.model.Account;
 import account.repository.RepositoryAccount;
+import account.util.Format;
 
 public class AccountController implements RepositoryAccount {
 
@@ -17,7 +18,7 @@ public class AccountController implements RepositoryAccount {
 		if (account != null)
 			account.showAccount();
 		else
-			System.out.println("\nThe Account ID : " + id + " was not found!");
+			Format.text("The Account ID : " + id + " was not found!", 1, 1, false);
 	}
 
 	@Override
@@ -39,9 +40,9 @@ public class AccountController implements RepositoryAccount {
 
 		if (searchAccount != null) {
 			accountList.set(accountList.indexOf(searchAccount), account);
-			System.out.println("\nThe Account Number: " + account.getId() + " was successfully updated!");
+			Format.text("The Account Number: " + account.getId() + " was successfully updated!", 1, 1, false);
 		} else
-			System.out.println("\nThe Account Number: " + account.getId() + " was not found!");
+			Format.text("The Account Number: " + account.getId() + " was not found!", 1, 1, false);
 
 	}
 
@@ -51,9 +52,9 @@ public class AccountController implements RepositoryAccount {
 
 		if (account != null) {
 			if (accountList.remove(account) == true)
-				System.out.println("\nThe Account Number: " + id + " was successfully deleted!");
+				Format.text("The Account Number: " + id + " was successfully deleted!", 1, 1, false);
 		} else
-			System.out.println("\nThe Account Number: " + id + " was not found!");
+			Format.text("The Account Number: " + id + " was not found!", 1, 1, false);
 
 	}
 
@@ -64,9 +65,9 @@ public class AccountController implements RepositoryAccount {
 		if (account != null) {
 
 			if (account.withdraw(value) == true)
-				System.out.println("\nThe Withdraw on Account's Number: " + id + " was successfull!");
+				Format.text("The Withdraw on Account's Number: " + id + " was successfull!",1,1,false);
 		} else
-			System.out.println("\nThe Account Number: " + id + " was not found!");
+			Format.text("The Account Number: " + id + " was not found!",1,1,false);
 
 	}
 
@@ -76,9 +77,9 @@ public class AccountController implements RepositoryAccount {
 
 		if (account != null) {
 			account.deposit(value);
-			System.out.println("\nThe Deposit on Account's Number: " + id + " was succesfull!");
+			Format.text("The Deposit on Account's Number: " + id + " was succesfull!",1,1,false);
 		} else
-			System.out.println("\nThe Account Number: " + id + " was not found!");
+			Format.text("The Account Number: " + id + " was not found!",1,1,false);
 
 	}
 
@@ -91,10 +92,10 @@ public class AccountController implements RepositoryAccount {
 
 			if (sourceAccount.withdraw(value) == true) {
 				destinyAccount.deposit(value);
-				System.out.println("\nThe Transfer was successfull!");
+				Format.text("The Transfer was successfull!",1,1,false);
 			}
 		} else
-			System.out.println("\nThe Account was not Found!");
+			Format.text("The Account was not Found!",1,1,false);
 	}
 
 	public String generateID() {

@@ -1,5 +1,7 @@
 package account.model;
 
+import account.util.Format;
+
 public class SavingsAccount extends Account {
 
 	private int birthday;
@@ -20,7 +22,7 @@ public class SavingsAccount extends Account {
 	@Override
 	public void showAccount() {
 		super.showAccount();
-		System.out.println("Account's Birthday: " + this.birthday);
+		Format.text("Account's Birthday: " + this.birthday,0,2,false);
 	}
 
 }
