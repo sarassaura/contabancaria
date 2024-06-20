@@ -98,7 +98,7 @@ public class Menu {
 			case 3:
 				System.out.println("Search Account Data - by ID\n\n");
 
-				System.out.print("Enter the Account's ID: ");
+				System.out.println("Enter the Account's ID: ");
 				leia.nextLine();
 				id = leia.nextLine();
 
@@ -111,7 +111,7 @@ public class Menu {
 			case 4:
 				System.out.println("Update Account data                                    \n\n");
 
-				System.out.print("Enter Account Number: ");
+				System.out.println("Enter Account's ID: ");
 				leia.nextLine();
 				id = leia.nextLine();
 
@@ -123,7 +123,7 @@ public class Menu {
 
 					System.out.print("Enter the Agency Number: ");
 					agency = leia.nextInt();
-					System.out.print("Enter the Owner's Number: ");
+					System.out.print("Enter the Owner's Name: ");
 					leia.skip("\\R?");
 					owner = leia.nextLine();
 
@@ -158,7 +158,7 @@ public class Menu {
 			case 5:
 				System.out.println("Delete Account                                         \n\n");
 
-				System.out.print("Enter the Account number: ");
+				System.out.println("Enter the Account's ID: ");
 				leia.nextLine();
 				id = leia.nextLine();
 
@@ -169,7 +169,7 @@ public class Menu {
 			case 6:
 				System.out.println("Withdraw                                               \n\n");
 
-				System.out.print("Enter the Account Number: ");
+				System.out.println("Enter the Account's ID: ");
 				leia.nextLine();
 				id = leia.nextLine();
 
@@ -185,7 +185,7 @@ public class Menu {
 			case 7:
 				System.out.println("Deposit                                                \n\n");
 
-				System.out.print("Enter the Account Number: ");
+				System.out.println("Enter the Account's ID:");
 				leia.nextLine();
 				id = leia.nextLine();
 
@@ -201,10 +201,10 @@ public class Menu {
 			case 8:
 				System.out.println("Transfer Money Between Accounts                        \n\n");
 
-				System.out.print("Enter the number of the source account: ");
+				System.out.println("Enter the number of the source account:");
 				leia.nextLine();
 				id = leia.nextLine();
-				System.out.print("Enter the number of the destination account: ");
+				System.out.println("Enter the number of the destination account:");
 				destinyID = leia.nextLine();
 
 				do {

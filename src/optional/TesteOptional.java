@@ -4,15 +4,15 @@ import java.util.Optional;
 
 public class TesteOptional {
 	public static void main(String[] args) {
-		String[] palavras = new String[10];
+		String[] words = new String[10];
 
-		Optional<String> checarNulo = Optional.ofNullable(palavras[5]);
+		Optional<String> checkNull = Optional.ofNullable(words[5]);
 
-		if (checarNulo.isPresent()) {
-			String palavra = palavras[5].toLowerCase();
-			System.out.println(palavra);
+		if (checkNull.isPresent()) {
+			String word = words[5].toLowerCase();
+			System.out.println(word);
 		} else {
-			System.out.println("A palavra selecionada é nula!");
+			System.out.println("The Word Selected is Null!");
 		}
 	}
 }
