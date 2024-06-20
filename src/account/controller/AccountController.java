@@ -1,6 +1,7 @@
 package account.controller;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import account.model.Account;
 import account.repository.RepositoryAccount;
@@ -8,16 +9,15 @@ import account.repository.RepositoryAccount;
 public class AccountController implements RepositoryAccount {
 
 	private ArrayList<Account> accountList = new ArrayList<Account>();
-	int number = 0;
 
 	@Override
-	public void searchByNumber(int number) {
-		var account = searchInCollection(number);
+	public void searchByNumber(String id) {
+		var account = searchInCollection(id);
 
 		if (account != null)
 			account.showAccount();
 		else
-			System.out.println("\nThe Account Number : " + number + " was not found!");
+			System.out.println("\nThe Account ID : " + id + " was not found!");
 	}
 
 	@Override
@@ -28,64 +28,64 @@ public class AccountController implements RepositoryAccount {
 	}
 
 	@Override
-	public void signup(Account account) {
+	public String signup(Account account) {
 		accountList.add(account);
-		System.out.println("\nThe Account Number: " + account.getNumber() + " was successfully created!");
+		return account.getId();
 	}
 
 	@Override
 	public void update(Account account) {
-		var searchAccount = searchInCollection(account.getNumber());
+		var searchAccount = searchInCollection(account.getId());
 
 		if (searchAccount != null) {
 			accountList.set(accountList.indexOf(searchAccount), account);
-			System.out.println("\nThe Account Number: " + account.getNumber() + " was successfully updated!");
+			System.out.println("\nThe Account Number: " + account.getId() + " was successfully updated!");
 		} else
-			System.out.println("\nThe Account Number: " + account.getNumber() + " was not found!");
+			System.out.println("\nThe Account Number: " + account.getId() + " was not found!");
 
 	}
 
 	@Override
-	public void delete(int number) {
-		var account = searchInCollection(number);
+	public void delete(String id) {
+		var account = searchInCollection(id);
 
 		if (account != null) {
 			if (accountList.remove(account) == true)
-				System.out.println("\nThe Account Number: " + number + " was successfully deleted!");
+				System.out.println("\nThe Account Number: " + id + " was successfully deleted!");
 		} else
-			System.out.println("\nThe Account Number: " + number + " was not found!");
+			System.out.println("\nThe Account Number: " + id + " was not found!");
 
 	}
 
 	@Override
-	public void withdraw(int number, float value) {
-		var account = searchInCollection(number);
+	public void withdraw(String id, float value) {
+		var account = searchInCollection(id);
 
 		if (account != null) {
 
 			if (account.withdraw(value) == true)
-				System.out.println("\nThe Withdraw on Account's Number: " + number + " was successfull!");
+				System.out.println("\nThe Withdraw on Account's Number: " + id + " was successfull!");
 		} else
-			System.out.println("\nThe Account Number: " + number + " was not found!");
+			System.out.println("\nThe Account Number: " + id + " was not found!");
 
 	}
 
 	@Override
-	public void deposit(int number, float value) {
-		var account = searchInCollection(number);
+	public void deposit(String id, float value) {
+		var account = searchInCollection(id);
 
 		if (account != null) {
 			account.deposit(value);
-			System.out.println("\nThe Deposit on Account's Number: " + number + " was succesfull!");
+			System.out.println("\nThe Deposit on Account's Number: " + id + " was succesfull!");
 		} else
-			System.out.println("\nThe Account Number: " + number + " was not found!");
+			System.out.println("\nThe Account Number: " + id + " was not found!");
 
 	}
 
 	@Override
-	public void transfer(int sourceNumber, int destinyNumber, float value) {
-		var sourceAccount = searchInCollection(sourceNumber);
-		var destinyAccount = searchInCollection(destinyNumber);
+	public void transfer(String sourceID, String destinyID, float value) {
+		var sourceAccount = searchInCollection(sourceID);
+		var destinyAccount = searchInCollection(destinyID);
 
 		if (sourceAccount != null && destinyAccount != null) {
 
@@ -97,13 +97,13 @@ public class AccountController implements RepositoryAccount {
 			System.out.println("\nThe Account was not Found!");
 	}
 
-	public int generateNumber() {
-		return ++number;
+	public String generateID() {
+		return UUID.randomUUID().toString();
 	}
 
-	public Account searchInCollection(int number) {
+	public Account searchInCollection(String id) {
 		for (var account : accountList) {
-			if (account.getNumber() == number) {
+			if (id.equals(account.getId())) {
 				return account;
 			}
 		}

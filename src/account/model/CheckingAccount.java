@@ -4,8 +4,8 @@ public class CheckingAccount extends Account {
 
 	private float limit;
 
-	public CheckingAccount(int number, int agency, int type, String owner, float balance, float limit) {
-		super(number, agency, type, owner, balance);
+	public CheckingAccount(String id, int agency, int type, String owner, float balance, float limit) {
+		super(id, agency, type, owner, balance);
 		this.limit = limit;
 	}
 

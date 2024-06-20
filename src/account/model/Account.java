@@ -4,26 +4,26 @@ import account.util.Colors;
 
 public abstract class Account {
 
-	private int number;
+	private String id;
 	private int agency;
 	private int type;
 	private String owner;
 	private float balance;
 
-	public Account(int number, int agency, int type, String owner, float balance) {
-		this.number = number;
+	public Account(String id, int agency, int type, String owner, float balance) {
+		this.id = id;
 		this.agency = agency;
 		this.type = type;
 		this.owner = owner;
 		this.balance = balance;
 	}
 
-	public int getNumber() {
-		return number;
+	public String getId() {
+		return id;
 	}
 
-	public void setNumber(int number) {
-		this.number = number;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public int getAgency() {
@@ -94,7 +94,7 @@ public abstract class Account {
 				+ Colors.TEXT_RED + "*" + Colors.TEXT_WHITE);
 		System.out.println(
 				Colors.TEXT_RED + "*******************************************************" + Colors.TEXT_WHITE);
-		System.out.println("Account's Number: " + this.number);
+		System.out.println("Account's ID: " + this.id);
 		System.out.println("Agency: " + this.agency);
 		System.out.println("Account's Type: " + type);
 		System.out.println("Owner: " + this.owner);

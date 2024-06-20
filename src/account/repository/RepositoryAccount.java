@@ -5,20 +5,20 @@ import account.model.Account;
 public interface RepositoryAccount {
 
 	// CRUD da Conta
-	public void searchByNumber(int number);
+	public void searchByNumber(String id);
 
 	public void showAll();
 
-	public void signup(Account account);
+	public String signup(Account account);
 
 	public void update(Account account);
 
-	public void delete(int number);
+	public void delete(String id);
 
 	// Métodos Bancários
-	public void withdraw(int number, float value);
+	public void withdraw(String id, float value);
 
-	public void deposit(int number, float value);
+	public void deposit(String id, float value);
 
-	public void transfer(int originNumber, int destinyNumber, float value);
+	public void transfer(String originNumber, String destinyNumber, float value);
 }

@@ -4,8 +4,8 @@ public class SavingsAccount extends Account {
 
 	private int birthday;
 
-	public SavingsAccount(int number, int agency, int type, String owner, float balance, int birthday) {
-		super(number, agency, type, owner, balance);
+	public SavingsAccount(String id, int agency, int type, String owner, float balance, int birthday) {
+		super(id, agency, type, owner, balance);
 		this.birthday = birthday;
 	}
 

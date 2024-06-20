@@ -8,36 +8,25 @@ import account.controller.AccountController;
 import account.model.CheckingAccount;
 import account.model.SavingsAccount;
 import account.util.Colors;
+import mockup.MockupData;
 
 public class Menu {
 
 	public static void main(String[] args) {
 
 		AccountController accounts = new AccountController();
+		MockupData mockupData = new MockupData(accounts);
+		mockupData.initialize();
 
 		Scanner leia = new Scanner(System.in);
 
-		int option = 0, number = 0, agency, type, birthday, destinyNumber;
-		String owner;
+		int option = 0, agency, type, birthday;
+		String owner, id = "", destinyID = "";
 		float balance, limit, value;
-
-		CheckingAccount cc1 = new CheckingAccount(accounts.generateNumber(), 123, 1, "João Silva", 1000f, 100.0f);
-		accounts.signup(cc1);
-
-		CheckingAccount cc2 = new CheckingAccount(accounts.generateNumber(), 124, 1, "Maria da Silva", 2000f, 100.0f);
-		accounts.signup(cc2);
-
-		SavingsAccount cp1 = new SavingsAccount(accounts.generateNumber(), 125, 2, "Mariana dos Santos", 4000f, 12);
-		accounts.signup(cp1);
-
-		SavingsAccount cp2 = new SavingsAccount(accounts.generateNumber(), 125, 2, "Juliana Ramos", 8000f, 15);
-		accounts.signup(cp2);
-
-		// contas.listarTodas();
 
 		do {
 			System.out.println(Colors.TEXT_BLACK_BOLD + Colors.ANSI_CYAN_BACKGROUND
-					+ "\n*******************************************************");
+					+ "*******************************************************");
 			System.out.println("*                                                     *");
 			System.out.println("*                      PETBANK                        *");
 			System.out.println("*                                                     *");
@@ -88,12 +77,14 @@ public class Menu {
 				case 1 -> {
 					System.out.print("Enter the Credit Limit (R$): ");
 					limit = leia.nextFloat();
-					accounts.signup(new CheckingAccount(accounts.generateNumber(), agency, type, owner, balance, limit));
+					String accountNumber = accounts
+							.signup(new CheckingAccount(accounts.generateID(), agency, type, owner, balance, limit));
+					System.out.println("\nThe Account Number: " + accountNumber + " was successfully created!");
 				}
 				case 2 -> {
 					System.out.print("Enter the Account's Birthday: ");
 					birthday = leia.nextInt();
-					accounts.signup(new SavingsAccount(accounts.generateNumber(), agency, type, owner, balance, birthday));
+					accounts.signup(new SavingsAccount(accounts.generateID(), agency, type, owner, balance, birthday));
 				}
 				}
 
@@ -107,12 +98,13 @@ public class Menu {
 			case 3:
 				System.out.println("Search Account Data - by ID\n\n");
 
-				System.out.print("Enter the Account Number: ");
-				number = leia.nextInt();
+				System.out.print("Enter the Account's ID: ");
+				leia.nextLine();
+				id = leia.nextLine();
 
 				System.out.println();
 
-				accounts.searchByNumber(number);
+				accounts.searchByNumber(id);
 
 				keyPress();
 				break;
@@ -120,9 +112,10 @@ public class Menu {
 				System.out.println("Update Account data                                    \n\n");
 
 				System.out.print("Enter Account Number: ");
-				number = leia.nextInt();
+				leia.nextLine();
+				id = leia.nextLine();
 
-				var searchAccount = accounts.searchInCollection(number);
+				var searchAccount = accounts.searchInCollection(id);
 
 				if (searchAccount != null) {
 
@@ -142,13 +135,13 @@ public class Menu {
 						System.out.print("Enter the Credit Limit (R$): ");
 						limit = leia.nextFloat();
 
-						accounts.update(new CheckingAccount(number, agency, type, owner, balance, limit));
+						accounts.update(new CheckingAccount(id, agency, type, owner, balance, limit));
 					}
 					case 2 -> {
 						System.out.print("Enter the Account's Birthday: ");
 						birthday = leia.nextInt();
 
-						accounts.update(new SavingsAccount(number, agency, type, owner, balance, birthday));
+						accounts.update(new SavingsAccount(id, agency, type, owner, balance, birthday));
 
 					}
 					default -> {
@@ -166,9 +159,10 @@ public class Menu {
 				System.out.println("Delete Account                                         \n\n");
 
 				System.out.print("Enter the Account number: ");
-				number = leia.nextInt();
+				leia.nextLine();
+				id = leia.nextLine();
 
-				accounts.delete(number);
+				accounts.delete(id);
 
 				keyPress();
 				break;
@@ -176,14 +170,15 @@ public class Menu {
 				System.out.println("Withdraw                                               \n\n");
 
 				System.out.print("Enter the Account Number: ");
-				number = leia.nextInt();
+				leia.nextLine();
+				id = leia.nextLine();
 
 				do {
 					System.out.print("Enter the Withdraw Amount (R$): ");
 					value = leia.nextFloat();
 				} while (value <= 0);
 
-				accounts.withdraw(number, value);
+				accounts.withdraw(id, value);
 
 				keyPress();
 				break;
@@ -191,14 +186,15 @@ public class Menu {
 				System.out.println("Deposit                                                \n\n");
 
 				System.out.print("Enter the Account Number: ");
-				number = leia.nextShort();
+				leia.nextLine();
+				id = leia.nextLine();
 
 				do {
 					System.out.print("Enter the Deposit Amount (R$): ");
 					value = leia.nextFloat();
 				} while (value <= 0);
 
-				accounts.deposit(number, value);
+				accounts.deposit(id, value);
 
 				keyPress();
 				break;
@@ -206,16 +202,17 @@ public class Menu {
 				System.out.println("Transfer Money Between Accounts                        \n\n");
 
 				System.out.print("Enter the number of the source account: ");
-				number = leia.nextInt();
+				leia.nextLine();
+				id = leia.nextLine();
 				System.out.print("Enter the number of the destination account: ");
-				destinyNumber = leia.nextInt();
+				destinyID = leia.nextLine();
 
 				do {
 					System.out.print("Enter the transfer amount (R$): ");
 					value = leia.nextFloat();
 				} while (value <= 0);
 
-				accounts.transfer(number, destinyNumber, value);
+				accounts.transfer(id, destinyID, value);
 
 				keyPress();
 				break;
